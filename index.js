@@ -19,82 +19,82 @@ const responseStatus = {
 
 function errorHandler(error, req, res, next) {
   switch (error) {
-    case resStatus.created: //201
-      res.status(resStatus.created).json({
-        statusCode: error,
+    case responseStatus.created: //201
+      res.status(responseStatus.created).json({
+        statusCode: 201,
         message:
           "The request has succeeded and a new resource has been created as a result of it"
       });
       break;
-    case resStatus.badRequest: // 400
-      res.status(resStatus.badRequest).json({
-        statusCode: error,
+    case responseStatus.badRequest: // 400
+      res.status(responseStatus.badRequest).json({
+        statusCode: 400,
         error:
           "That server could not understand the request due to invalid syntax"
       });
       break;
-    case resStatus.badCredentials: //401
-      res.status(resStatus.badCredentials).json({
-        statusCode: error,
+    case responseStatus.badCredentials: //401
+      res.status(responseStatus.badCredentials).json({
+        statusCode: 401,
         error: "Incorrect credentials. Please try again."
       });
       break;
-    case resStatus.forbiddenAccess: //403
-      res.status(resStatus.forbiddenAccess).json({
-        statusCode: error,
+    case responseStatus.forbiddenAccess: //403
+      res.status(responseStatus.forbiddenAccess).json({
+        statusCode: 403,
         error: "You are not authorized to view this content."
       });
       break;
-    case resStatus.notFound: //404
-      res.status(resStatus.notFound).json({
-        statusCode: error,
+    case responseStatus.notFound: //404
+      res.status(responseStatus.notFound).json({
+        statusCode: 404,
         error: "The server can not find requested resource"
       });
       break;
-    case resStatus.requestTimeout: //408
-      res.status(resStatus.requestTimeout).json({
-        statusCode: error,
+    case responseStatus.requestTimeout: //408
+      res.status(responseStatus.requestTimeout).json({
+        statusCode: 408,
         error: "The server would like to shut down this unused connection"
       });
       break;
-    case resStatus.gone: //410
-      res.status(resStatus.gone).json({
-        statusCode: error,
+    case responseStatus.gone: //410
+      res.status(responseStatus.gone).json({
+        statusCode: 410,
         error:
           "the requested content has been permanently deleted from server, with no forwarding address"
       });
       break;
-    case resStatus.typeError: //422
-      res.status(resStatus.typeError).json({
-        statusCode: error,
+    case responseStatus.typeError: //422
+      res.status(responseStatus.typeError).json({
+        statusCode: 422,
         error:
           "The request was well-formed but was unable to be followed due to semantic errors."
       });
       break;
 
-    case resStatus.serverError: //500
-      res.status(resStatus.serverError).json({
-        statusCode: error,
+    case responseStatus.serverError: //500
+      res.status(responseStatus.serverError).json({
+        statusCode: 500,
         error: `The server has encountered a situation it doesn't know how to handle`
       });
       break;
-    case resStatus.badGateway: //502
-      res.status(resStatus.badGateway).json({
-        statusCode: error,
+    case responseStatus.badGateway: //502
+      res.status(responseStatus.badGateway).json({
+        statusCode: 502,
         error: `While working as a gateway to get a response needed to handle the request, got an invalid response.`
       });
       break;
 
-    case resStatus.serviceTemporarilyUnavaible: //503
-      res.status(resStatus.serviceTemporarilyUnavaible).json({
-        statusCode: error,
+    case responseStatus.serviceTemporarilyUnavaible: //503
+      res.status(responseStatus.serviceTemporarilyUnavaible).json({
+        statusCode: 503,
         error: `The server is not ready to handle the request`
       });
       break;
 
-    case resStatus.gatewayTimeout: //504
-      res.status(resStatus.gatewayTimeout).json({
-        statusCode: error,
+    case responseStatus.gatewayTimeout: //504
+      res.status(responseStatus.gatewayTimeout).json({
+        statusCode: 504,
         error: `The server is acting as a gateway and cannot get a response in time.`
       });
       break;

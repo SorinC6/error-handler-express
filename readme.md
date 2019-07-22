@@ -1,58 +1,122 @@
-## A Central error handler for express app
-## Eeasy Express error handler with the most commun errors
+## A graceful error handler for Express applications
 
-Error-Express-Handler is a easy middleware with build in errors messages for the most commun http errors in an express application. Using this packeges the user no longer have to put the code status and the message for the error 
+## Easy Express error handler with the most commun errors
+
+Error-Express-Handler is a easy middleware with build in errors messages for the most commun http errors in an express application. Using this package the user no longer have to put the code status and the message for the error
 
 ## Getting started
 
-- npm install `npm i error-express-handler`
-- In your express server file, require `bouncer`
+- npm install `npm i error-express-handler` or `yarn add error-express-handler`
+- In your express server file, require `errorHandler`
 
 ```javascript
-const { bouncer } = require('express-error-bouncer');
+const { errorHandler } = require("error-express-handler");
+const express = require("express");
 
-const express = require('express')
+//server
+const server = expresss();
+server.use(express.json());
 
-const app = express()
+//use errorHandler middleware here
+server.use(errorHandler);
 
-app.use(express.json())
-const PORT = process.env.PORT || 300
-  //...
-  //...
-  //...
-app.use(bouncer);
-app.listen(PORT, () => console.log(`server listening at port ${PORT}`))
+server.listen(port, () => {
+  console.log(`\n*** Server running on http://localhost:${port}  ***\n`);
+});
+```
+
+
+
+- example before using `error-express-handler` your code could look similar to:
 
 ```
 
-- Notice that the bouncer is last in the pipeline, that is, it should be the last before app.listen() call.
-
-Now anywhere in the app that you want to catch error, you can use the `ErrorHandler constructor as shown below:
-
-```js
-const { ErrorHandler } = require('express-error-bouncer')
-
-const testBouncer = (req, res, next) => {
+router.delete("/users/:id", async (req, res, next) => {
+  const { id } = req.params;
   try {
-    //
-    throw new ErrorHandler(404, 'Resource not found')
-  } catch(err){
-    next(err)
+    const result = await dbHelpers.deleteUserById(id);
+    if (result === 1) {
+      res.status(200).json({
+        message: "Delete user Sucesfully"
+      });
+    } else {
+      res
+        .status(404)
+        .json({ message: "The server can not find requested resource" });
+    }
+  } catch (error) {
+    res.status(500).json({
+      error: `The server has encountered a situation it doesn't know how to handle`
+    });
   }
-}
+});
+
+```
+Now you can require `responseStatus` anywhere in your code and use it like in this example:
+
+```
+
+const { responseStatus } = require("error-express-handler");
+
+router.delete("/users/:id", async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const result = await dbHelpers.deleteUserById(id);
+    if (result === 1) {
+      res.status(responseStatus.successful).json({
+        message: "Delete user Sucesfully"
+      });
+    } else {
+      next(responseStatus.notFound);
+    }
+  } catch (error) {
+    next(responseStatus.serverError);
+  }
+});
+
 ```
 
 The above would return:
+
+- in case of `next(responseStatus.notFound)`:
+
 ```json
 {
-    "status": "error",
-    "code": 404,
-    "message": "Resource not found"
+  "statusCode": 404,
+  "error": "The server can not find requested resource"
 }
+```
 
+- in case of `next(responseStatus.serverError)`:
+
+```json
+{
+  "statusCode": 500,
+  "error": "The server has encountered a situation it doesn't know how to handle"
+}
+```
+
+For now this are all HTTP response status codes with detail error messages:
+
+```
+  successful: 200,
+  created: 201,
+  badRequest: 400,
+  badCredentials: 401,
+  forbiddenAccess: 403,
+  notFound: 404,
+  requestTimeout: 408,
+  gone: 410,
+  typeError: 422,
+  serverError: 500,
+  notImplemented: 501,
+  badGateway: 502,
+  serviceTemporarilyUnavaible: 503,
+  gatewayTimeout: 504
 ```
 
 # Contribution
-- Got an idea on how to make this package better, feel free to contribute
-  
-Follow me on twitter [@iam_nedsoft](https://twitter.com/iam_nedsoft) for more updates
+
+- Wanna add more HTTP response status codes or got an idea on how to improve this error handler , feel free to contribute
+
+Github repository [@Sorin Chis](https://github.com/SorinC6)
