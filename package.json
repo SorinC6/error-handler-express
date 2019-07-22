@@ -1,6 +1,6 @@
 {
-  "name": "error-handler-express",
-  "version": "1.0.0",
+  "name": "error-express-handler",
+  "version": "1.0.2",
   "description": "Easy to use npm package of catching the most common error in nodejs",
   "main": "index.js",
   "scripts": {
