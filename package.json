@@ -1,6 +1,6 @@
 {
   "name": "error-express-handler",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Easy to use npm package of catching the most common error in nodejs",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,7 @@
   "author": "Sorin Chis",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/SorinC6"
+    "url": "https://github.com/SorinC6/error-handler-express/issues"
   },
-  "homepage": "https://github.com/SorinC6"
+  "homepage": "https://github.com/SorinC6/error-handler-express"
 }
