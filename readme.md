@@ -25,12 +25,11 @@ server.listen(port, () => {
 });
 ```
 
+## Whow it works
 
+- Example before using `error-express-handler` your code could look similar to:
 
-- example before using `error-express-handler` your code could look similar to:
-
-```
-
+```javascript
 router.delete("/users/:id", async (req, res, next) => {
   const { id } = req.params;
   try {
@@ -50,12 +49,11 @@ router.delete("/users/:id", async (req, res, next) => {
     });
   }
 });
-
-```
-Now you can require `responseStatus` anywhere in your code and use it like in this example:
-
 ```
 
+### Now you can require `responseStatus` anywhere in your code and use it like in this example:
+
+```javascript
 const { responseStatus } = require("error-express-handler");
 
 router.delete("/users/:id", async (req, res, next) => {
@@ -73,7 +71,6 @@ router.delete("/users/:id", async (req, res, next) => {
     next(responseStatus.serverError);
   }
 });
-
 ```
 
 The above would return:
@@ -98,7 +95,7 @@ The above would return:
 
 For now this are all HTTP response status codes with detail error messages:
 
-```
+```js
   successful: 200,
   created: 201,
   badRequest: 400,
