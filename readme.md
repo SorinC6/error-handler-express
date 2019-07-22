@@ -1,6 +1,10 @@
 ## A graceful error handler for Express applications
 
-## Easy Express error handler with the most commun errors
+[![npm](https://img.shields.io/npm/v/error-express-handler.svg)](https://www.npmjs.com/package/error-express-handler)
+[![npm](https://img.shields.io/npm/dw/error-express-handler.svg)](https://www.npmjs.com/package/error-express-handler)
+[![NPM](https://img.shields.io/npm/l/error-express-handler.svg)](https://opensource.org/licenses/MIT)
+
+## Easy Express error handler with the most common errors
 
 Error-Express-Handler is a easy middleware with build in errors messages for the most commun http errors in an express application. Using this package the user no longer have to put the code status and the message for the error
 
