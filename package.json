@@ -1,0 +1,12 @@
+{
+  "name": "error-handler-express",
+  "version": "1.0.0",
+  "description": "Easy to use npm package of catching the most common error in nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
